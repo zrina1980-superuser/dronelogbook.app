@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1024" height="1024">
+  <defs>
+    <radialGradient id="bg-dronelogbook" cx="50%" cy="45%" r="65%">
+      <stop offset="0%" stop-color="#0d1830"/>
+      <stop offset="60%" stop-color="#060a14"/>
+      <stop offset="100%" stop-color="#03050a"/>
+    </radialGradient>
+    <radialGradient id=" flare-dronelogbook" cx="50%" cy="45%" r="45%">
+      <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.22"/>
+      <stop offset="55%" stop-color="#ff007f" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#00f0ff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="grad-dronelogbook" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f0ff"/>
+      <stop offset="50%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#ff007f"/>
+    </linearGradient>
+    <filter id="glow-dronelogbook" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="8" result="blur1"/>
+      <feGaussianBlur stdDeviation="18" result="blur2"/>
+      <feMerge>
+        <feMergeNode in="blur2"/>
+        <feMergeNode in="blur1"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Pozadina -->
+  <rect width="512" height="512" rx="110" fill="url(#bg-dronelogbook)"/>
+  <rect width="512" height="512" rx="110" fill="url(#flare-dronelogbook)"/>
+
+  <!-- Tech mreža u kutovima -->
+  <g stroke="#00f0ff" stroke-opacity="0.2" stroke-width="1.5">
+    <line x1="55" y1="75" x2="105" y2="50"/><line x1="105" y1="50" x2="90" y2="105"/>
+    <line x1="455" y1="80" x2="410" y2="120"/><line x1="410" y1="120" x2="465" y2="135"/>
+    <circle cx="55" cy="75" r="3" fill="#00f0ff"/><circle cx="105" cy="50" r="3" fill="#00f0ff"/>
+    <circle cx="455" cy="80" r="3" fill="#ff007f"/><circle cx="410" cy="120" r="3" fill="#ff007f"/>
+  </g>
+
+  <!-- HUD Radarski prstenovi -->
+  <circle cx="256" cy="235" r="184" fill="none" stroke="#00f0ff" stroke-width="2" stroke-opacity="0.55" filter="url(#glow-dronelogbook)"/>
+  <circle cx="256" cy="235" r="175" fill="none" stroke="#00f0ff" stroke-width="3" stroke-dasharray="4 10" stroke-opacity="0.7"/>
+  <circle cx="256" cy="235" r="154" fill="none" stroke="url(#grad-dronelogbook)" stroke-width="2.5" stroke-dasharray="45 18 10 18" stroke-opacity="0.85"/>
+  
+
+  <!-- 4 HUD točke na prstenu -->
+  <circle cx="256" cy="51" r="5" fill="#00f0ff" filter="url(#glow-dronelogbook)"/>
+  <circle cx="256" cy="419" r="5" fill="#ff007f" filter="url(#glow-dronelogbook)"/>
+  <circle cx="72" cy="235" r="5" fill="#00f0ff" filter="url(#glow-dronelogbook)"/>
+  <circle cx="440" cy="235" r="5" fill="#ff007f" filter="url(#glow-dronelogbook)"/>
+
+  <!-- Bočni simboli -->
+  
+
+  <!-- Glavno 3D Neonsko PCB Slovo Z -->
+  <g filter="url(#glow-dronelogbook)">
+    <path d="M 178 148 H 334 L 182 322 H 336" fill="none" stroke="url(#grad-dronelogbook)" stroke-width="38" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <path d="M 178 148 H 334 L 182 322 H 336" fill="none" stroke="#050914" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 178 148 H 334 L 182 322 H 336" fill="none" stroke="url(#grad-dronelogbook)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow-dronelogbook)"/>
+
+  <!-- PCB Čvorišta (Solder Pads) unutar Z -->
+  <g fill="#050914" stroke="#00f0ff" stroke-width="3">
+    <circle cx="195" cy="148" r="6"/><circle cx="305" cy="148" r="6"/>
+    <circle cx="256" cy="235" r="7" stroke="#ff007f"/>
+    <circle cx="210" cy="322" r="6"/><circle cx="318" cy="322" r="6" stroke="#ff007f"/>
+  </g>
+
+  
+          <circle cx="172" cy="148" r="28" fill="none" stroke="#00f0ff" stroke-width="4" stroke-dasharray="10 6" filter="url(#glow-dronelogbook)"/>
+          <circle cx="340" cy="148" r="28" fill="none" stroke="#00f0ff" stroke-width="4" stroke-dasharray="10 6" filter="url(#glow-dronelogbook)"/>
+          <circle cx="172" cy="322" r="28" fill="none" stroke="#ff007f" stroke-width="4" stroke-dasharray="10 6" filter="url(#glow-dronelogbook)"/>
+          <circle cx="340" cy="322" r="28" fill="none" stroke="#ff007f" stroke-width="4" stroke-dasharray="10 6" filter="url(#glow-dronelogbook)"/>
+          <circle cx="256" cy="235" r="18" fill="#050811" stroke="#00f0ff" stroke-width="6" filter="url(#glow-dronelogbook)"/>
+        
+
+  <!-- Naziv aplikacije (.app) -->
+  <text x="256" y="422" text-anchor="middle" font-family="Plus Jakarta Sans, -apple-system, sans-serif" font-weight="800" font-size="44">
+    <tspan fill="#ffffff">drone</tspan><tspan fill="#00f0ff" filter="url(#glow-dronelogbook)">.app</tspan>
+  </text>
+</svg>

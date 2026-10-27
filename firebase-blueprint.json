@@ -1,0 +1,424 @@
+{
+  "entities": {
+    "PilotProfile": {
+      "title": "PilotProfile",
+      "description": "Pilot profile, operator registration, active drone details, and official document links.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "Firebase Auth UID of the pilot",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "pilotName": {
+          "type": "string",
+          "description": "Display name or callsign of the pilot",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "pilotId": {
+          "type": "string",
+          "description": "Official remote pilot license ID (e.g. HRV-RP-...)",
+          "maxLength": 80
+        },
+        "operatorId": {
+          "type": "string",
+          "description": "UAS Operator registration number",
+          "maxLength": 80
+        },
+        "droneSn": {
+          "type": "string",
+          "description": "Active drone serial number",
+          "maxLength": 80
+        },
+        "droneMake": {
+          "type": "string",
+          "description": "Active drone manufacturer (e.g. DJI, Autel)",
+          "maxLength": 80
+        },
+        "droneModel": {
+          "type": "string",
+          "description": "Active drone model (e.g. Mini 4 Pro, Mavic 3 Classic)",
+          "maxLength": 80
+        },
+        "avatarDataUrl": {
+          "type": "string",
+          "description": "Compressed Base64 or SVG data URI for pilot profile picture",
+          "maxLength": 250000
+        },
+        "licenseUrl": {
+          "type": "string",
+          "description": "URL link to remote pilot license certificate",
+          "maxLength": 500
+        },
+        "registrationUrl": {
+          "type": "string",
+          "description": "URL link to operator registration certificate",
+          "maxLength": 500
+        },
+        "insuranceUrl": {
+          "type": "string",
+          "description": "URL link to drone liability insurance policy",
+          "maxLength": 500
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp of creation"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp of last update"
+        }
+      },
+      "required": [
+        "uid",
+        "pilotName",
+        "pilotId",
+        "operatorId",
+        "droneSn",
+        "droneMake",
+        "droneModel",
+        "avatarDataUrl",
+        "licenseUrl",
+        "registrationUrl",
+        "insuranceUrl",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "PilotDocument": {
+      "title": "PilotDocument",
+      "description": "Uploaded local file (PDF or image) for pilot license, operator registration, or drone insurance synced to Firebase Cloud.",
+      "type": "object",
+      "properties": {
+        "ownerId": {
+          "type": "string",
+          "description": "UID of the pilot who owns this document",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "docType": {
+          "type": "string",
+          "description": "Document category",
+          "enum": ["license", "registration", "insurance"],
+          "maxLength": 30
+        },
+        "fileName": {
+          "type": "string",
+          "description": "Original uploaded file name",
+          "maxLength": 200
+        },
+        "mimeType": {
+          "type": "string",
+          "description": "MIME type of the uploaded file (e.g. application/pdf, image/jpeg)",
+          "maxLength": 100
+        },
+        "fileDataUrl": {
+          "type": "string",
+          "description": "Base64 Data URL of the uploaded file",
+          "maxLength": 600000
+        },
+        "externalUrl": {
+          "type": "string",
+          "description": "Optional external portal or cloud link",
+          "maxLength": 500
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp of creation"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp of last update"
+        }
+      },
+      "required": [
+        "ownerId",
+        "docType",
+        "fileName",
+        "mimeType",
+        "fileDataUrl",
+        "externalUrl",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "FlightRecord": {
+      "title": "FlightRecord",
+      "description": "Individual drone flight log entry with GPS coordinates, radius, duration, and pre-flight checklist verification.",
+      "type": "object",
+      "properties": {
+        "ownerId": {
+          "type": "string",
+          "description": "UID of the pilot who recorded the flight",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "location": {
+          "type": "string",
+          "description": "Takeoff location name and/or formatted GPS coordinates",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "latitude": {
+          "type": "number",
+          "description": "Takeoff latitude in decimal degrees"
+        },
+        "longitude": {
+          "type": "number",
+          "description": "Takeoff longitude in decimal degrees"
+        },
+        "takeoffTime": {
+          "type": "string",
+          "description": "ISO or formatted takeoff timestamp",
+          "minLength": 1,
+          "maxLength": 64
+        },
+        "landingTime": {
+          "type": "string",
+          "description": "ISO or formatted landing timestamp",
+          "minLength": 1,
+          "maxLength": 64
+        },
+        "durationMin": {
+          "type": "number",
+          "description": "Calculated flight duration in minutes"
+        },
+        "radiusM": {
+          "type": "number",
+          "description": "Maximum flight radius in meters (100 - 2000)"
+        },
+        "droneSn": {
+          "type": "string",
+          "description": "Drone serial number used for the flight",
+          "maxLength": 80
+        },
+        "droneMake": {
+          "type": "string",
+          "description": "Drone manufacturer",
+          "maxLength": 80
+        },
+        "droneModel": {
+          "type": "string",
+          "description": "Drone model",
+          "maxLength": 80
+        },
+        "checklistCompleted": {
+          "type": "boolean",
+          "description": "Confirmation that pre-flight safety checklist was completed"
+        },
+        "notes": {
+          "type": "string",
+          "description": "Flight notes, weather observations, or significant events",
+          "maxLength": 1000
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp of creation"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp of last update"
+        }
+      },
+      "required": [
+        "ownerId",
+        "location",
+        "takeoffTime",
+        "landingTime",
+        "durationMin",
+        "radiusM",
+        "droneSn",
+        "droneMake",
+        "droneModel",
+        "checklistCompleted",
+        "notes",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "MaintenanceRecord": {
+      "title": "MaintenanceRecord",
+      "description": "Drone maintenance, repair, calibration, or firmware update log entry.",
+      "type": "object",
+      "properties": {
+        "ownerId": {
+          "type": "string",
+          "description": "UID of the pilot who logged the maintenance",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "serviceDate": {
+          "type": "string",
+          "description": "Date when maintenance was performed",
+          "minLength": 1,
+          "maxLength": 40
+        },
+        "category": {
+          "type": "string",
+          "description": "Service type (Redovni servis, Zamjena dijelova, Firmware, Kalibracija, Popravak)",
+          "minLength": 1,
+          "maxLength": 60
+        },
+        "droneSn": {
+          "type": "string",
+          "description": "Serial number of the serviced drone",
+          "maxLength": 80
+        },
+        "description": {
+          "type": "string",
+          "description": "Detailed description of maintenance work performed",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp of creation"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp of last update"
+        }
+      },
+      "required": [
+        "ownerId",
+        "serviceDate",
+        "category",
+        "droneSn",
+        "description",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "CountryRule": {
+      "title": "CountryRule",
+      "description": "Custom or overridden country drone regulation entry saved by the pilot.",
+      "type": "object",
+      "properties": {
+        "ownerId": {
+          "type": "string",
+          "description": "UID of the pilot who saved or customized the country rule",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "country": {
+          "type": "string",
+          "description": "Name of the country (e.g. Hrvatska, Grčka)",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "regulator": {
+          "type": "string",
+          "description": "National aviation authority acronym/name (e.g. HACZ, HCAA)",
+          "maxLength": 120
+        },
+        "easa": {
+          "type": "string",
+          "description": "Whether EASA rules apply",
+          "enum": ["Da", "Ne", "Djelomično"],
+          "maxLength": 30
+        },
+        "maxHeight": {
+          "type": "string",
+          "description": "Maximum allowed flight altitude (e.g. 120m)",
+          "maxLength": 60
+        },
+        "insurance": {
+          "type": "string",
+          "description": "Insurance requirement details",
+          "maxLength": 120
+        },
+        "appLink": {
+          "type": "string",
+          "description": "Official airspace portal or app link",
+          "maxLength": 500
+        },
+        "prohibited": {
+          "type": "string",
+          "description": "Prohibited zones and special restrictions",
+          "maxLength": 600
+        },
+        "notes": {
+          "type": "string",
+          "description": "Practical notes and tolerances",
+          "maxLength": 1500
+        },
+        "instructions": {
+          "type": "string",
+          "description": "Step-by-step registration and flight approval instructions",
+          "maxLength": 2000
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp of creation"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp of last update"
+        }
+      },
+      "required": [
+        "ownerId",
+        "country",
+        "regulator",
+        "easa",
+        "maxHeight",
+        "insurance",
+        "appLink",
+        "prohibited",
+        "notes",
+        "instructions",
+        "createdAt",
+        "updatedAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": {
+        "$ref": "#/entities/PilotProfile"
+      },
+      "description": "Stores pilot profile and document links owned by {userId}."
+    },
+    "/pilotDocs/{docId}": {
+      "schema": {
+        "$ref": "#/entities/PilotDocument"
+      },
+      "description": "Stores uploaded local PDF/image documents (license, registration, insurance) owned by a specific pilot (ownerId)."
+    },
+    "/flights/{flightId}": {
+      "schema": {
+        "$ref": "#/entities/FlightRecord"
+      },
+      "description": "Stores drone flight logs owned by a specific pilot (ownerId)."
+    },
+    "/maintenance/{maintenanceId}": {
+      "schema": {
+        "$ref": "#/entities/MaintenanceRecord"
+      },
+      "description": "Stores drone service and maintenance entries owned by a specific pilot (ownerId)."
+    },
+    "/countryRules/{ruleId}": {
+      "schema": {
+        "$ref": "#/entities/CountryRule"
+      },
+      "description": "Stores custom or updated country drone regulations owned by a specific pilot (ownerId)."
+    }
+  }
+}

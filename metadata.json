@@ -1,0 +1,6 @@
+{
+  "name": "Drone Logbook Pro",
+  "description": "Moderna web i PWA aplikacija s Firebase bazom podataka za evidenciju letova drona, održavanja, flote i EASA/svjetskih pravila letenja.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
