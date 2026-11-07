@@ -128,6 +128,16 @@
           "description": "Optional external portal or cloud link",
           "maxLength": 500
         },
+        "docNumber": {
+          "type": "string",
+          "description": "Optional pilot, operator, or insurance document number",
+          "maxLength": 80
+        },
+        "validUntil": {
+          "type": "string",
+          "description": "Optional document expiry date",
+          "maxLength": 40
+        },
         "createdAt": {
           "type": "string",
           "format": "date-time",

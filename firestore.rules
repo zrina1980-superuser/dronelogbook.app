@@ -65,7 +65,8 @@ service cloud.firestore {
         ])
         && data.keys().hasOnly([
           'ownerId', 'docType', 'fileName', 'mimeType',
-          'fileDataUrl', 'externalUrl', 'createdAt', 'updatedAt'
+          'fileDataUrl', 'externalUrl', 'docNumber', 'validUntil',
+          'createdAt', 'updatedAt'
         ])
         && data.ownerId is string && data.ownerId.size() >= 1 && data.ownerId.size() <= 128 && data.ownerId.matches('^[a-zA-Z0-9_\\-]+$')
         && data.ownerId == request.auth.uid
@@ -74,6 +75,8 @@ service cloud.firestore {
         && data.mimeType is string && data.mimeType.size() <= 100
         && data.fileDataUrl is string && data.fileDataUrl.size() <= 600000
         && data.externalUrl is string && data.externalUrl.size() <= 500
+        && (!('docNumber' in data) || (data.docNumber is string && data.docNumber.size() <= 80))
+        && (!('validUntil' in data) || (data.validUntil is string && data.validUntil.size() <= 40))
         && data.createdAt is timestamp
         && data.updatedAt is timestamp;
     }
@@ -199,7 +202,8 @@ service cloud.firestore {
         && incoming().updatedAt == request.time
         && (
           incoming().diff(existing()).affectedKeys().hasOnly([
-            'docType', 'fileName', 'mimeType', 'fileDataUrl', 'externalUrl', 'updatedAt'
+            'docType', 'fileName', 'mimeType', 'fileDataUrl', 'externalUrl',
+            'docNumber', 'validUntil', 'updatedAt'
           ])
         );
       allow delete: if isVerified() && isValidId(docId) && existing().ownerId == request.auth.uid;

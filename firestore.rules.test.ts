@@ -84,6 +84,8 @@ test('firestore.rules contains all mandatory zero-trust invariants', () => {
   assert.ok(rulesText.includes('allow read, write: if false;'));
   assert.ok(rulesText.includes('request.auth.token.email_verified == true'));
   assert.ok(rulesText.includes('isValidPilotProfile(incoming())'));
+  assert.ok(rulesText.includes("'docNumber' in data"));
+  assert.ok(rulesText.includes("'validUntil' in data"));
   assert.ok(rulesText.includes('isValidFlightRecord(incoming())'));
   assert.ok(rulesText.includes('isValidMaintenanceRecord(incoming())'));
   assert.ok(rulesText.includes('isValidCountryRule(incoming())'));

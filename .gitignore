@@ -1,4 +1,5 @@
 node_modules/
+.aistudio/
 build/
 dist/
 coverage/

@@ -150,11 +150,11 @@ export const RulesModule: React.FC<RulesModuleProps> = ({
       code: formCode.trim().toUpperCase(),
       region: formRegion.trim(),
       status: formStatus.trim(),
-      safetyLevel: formStatus.toLowerCase().includes('zabrana')
-        ? 'forbidden'
+      safetyLevel: formStatus.toLowerCase().includes('zabran')
+        ? 'banned'
         : formStatus.toLowerCase().includes('uvjetno') ||
           formStatus.toLowerCase().includes('dozvola obavezna')
-        ? 'caution'
+        ? 'restricted'
         : 'allowed',
       regulator: formRegulator.trim() || 'Nacionalna zrakoplovna agencija',
       easa: formEasa,
@@ -181,13 +181,13 @@ export const RulesModule: React.FC<RulesModuleProps> = ({
 
   const getBadgeStyle = (rule: CountryRuleEntry) => {
     if (
-      rule.safetyLevel === 'forbidden' ||
-      (rule.status && rule.status.toLowerCase().includes('zabrana'))
+      rule.safetyLevel === 'banned' ||
+      (rule.status && rule.status.toLowerCase().includes('zabran'))
     ) {
       return 'bg-rose-500/15 border-rose-500/50 text-rose-300';
     }
     if (
-      rule.safetyLevel === 'caution' ||
+      rule.safetyLevel === 'restricted' ||
       (rule.status &&
         (rule.status.toLowerCase().includes('uvjetno') ||
           rule.status.toLowerCase().includes('dozvola obavezna')))

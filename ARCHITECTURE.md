@@ -15,7 +15,7 @@ Ovaj dokument opisuje tehničku arhitekturu, PWA podsustav, strukturu direktorij
 | **Autentifikacija** | **Firebase Authentication** | Prijava putem Google računa (`signInWithPopup`) za višekorisničku izolaciju podataka. |
 | **Kartografija i Geokodiranje** | **Leaflet + Esri World Imagery + OSM Nominatim** | Interaktivna satelitska i cestovna karta, crtanje radijusa leta i automatsko pretvaranje GPS koordinata u naziv naselja. |
 | **Meteorološki Podaci** | **Open-Meteo API** | Dohvat temperature (2 m), brzine vjetra (10 m) i udara vjetra u stvarnom vremenu za koordinate polijetanja. |
-| **Testiranje i Verifikacija** | **Node.js Test Runner (`node:test`) + ESLint** | Jedinični testovi čiste poslovne logike i verifikacija sigurnosnih pravila Firestore baze. |
+| **Testiranje i Verifikacija** | **Node.js Test Runner (`node:test`) + ESLint** | Jedinični testovi poslovne logike, tipova i Firestore sigurnosnih pravila. |
 
 ---
 
@@ -40,7 +40,6 @@ Ovaj dokument opisuje tehničku arhitekturu, PWA podsustav, strukturu direktorij
 │   ├── pwa-192x192.png              # Standardna PWA ikona (192x192 PNG, purpose: "any")
 │   ├── pwa-512x512.png              # Visokorezolucijska PWA splash ikona (512x512 PNG, purpose: "any")
 │   ├── pwa-maskable-512x512.png     # Android adaptivna maskable ikona (512x512 PNG sa safe-zonom)
-│   └── assets/aistudio/             # Izvorni vizualni resursi i CSV baza 195 država
 └── src/
     ├── main.tsx                     # React DOM ulazna točka + registracija PWA Service Workera
     ├── App.tsx                      # Glavni kontejner aplikacije, navigacija tabova, offline indikator

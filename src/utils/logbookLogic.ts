@@ -21,6 +21,8 @@ export interface PilotDocumentData {
   mimeType: string;
   fileDataUrl: string; // Base64 Data URL of local PDF or Image
   externalUrl: string;
+  docNumber?: string;
+  validUntil?: string;
   updatedAtMs: number;
   synced?: boolean;
 }
@@ -98,7 +100,11 @@ export const BLUEPRINT_LIMITS = {
   droneMakeMax: 80,
   droneModelMax: 80,
   avatarMax: 250000,
-  docFileMax: 600000,
+  docFileNameMax: 200,
+  docMimeMax: 100,
+  docDataUrlMax: 600000,
+  docNumberMax: 80,
+  validUntilMax: 40,
   urlMax: 500,
   locationMax: 300,
   timeMax: 64,

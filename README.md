@@ -1,6 +1,8 @@
 # 🚁 dronelogbook.app
 
 > Suvremena, instalabilna **Progressive Web App (PWA) & Firebase Cloud** platforma za evidenciju letova drona, održavanja flote, pohranu pilotskih dokumenata i pregled zrakoplovnih te carinskih propisa za **195 država svijeta**.
+>
+> **Pokreni aplikaciju:** [dronelogbook.zrina.app](https://dronelogbook.zrina.app/)
 
 ---
 
@@ -45,10 +47,12 @@ Kliknite na gumb **„Instaliraj App”** u gornjem desnom kutu aplikacije:
 
 ## 🚀 Pokretanje i Razvoj
 
+Potreban je Node.js 22.12 ili noviji. npm je podržani package manager.
+
 ### Instalacija i lokalno pokretanje
 ```bash
 # 1. Instalacija ovisnosti
-npm install
+npm ci
 
 # 2. Pokretanje razvojnog poslužitelja s aktivnim PWA Service Workerom (port 3000)
 npm run dev
@@ -57,10 +61,13 @@ npm run dev
 ### Provjera ispravnosti, testovi i produkcijski build
 ```bash
 # Pokretanje jediničnih testova logike i sigurnosnih pravila (20 testova)
-npx tsx --test src/utils/logbookLogic.test.ts firestore.rules.test.ts
+npm test
 
-# Statička provjera koda i Firestore pravila
+# ESLint provjera Firestore sigurnosnih pravila
 npm run lint
+
+# TypeScript provjera tipova
+npm run typecheck
 
 # Produkcijski build (generira dist/ s Workbox Service Workerom sw.js i manifest.webmanifest)
 npm run build
@@ -81,6 +88,7 @@ npm run build
 - [**ARCHITECTURE.md**](./ARCHITECTURE.md) — Detaljan opis tehničke arhitekture, PWA Service Workera, podatkovnog modela, tokova sinkronizacije i sigurnosnih pravila.
 - [**CHANGELOG.md**](./CHANGELOG.md) — Kronološki pregled svih verzija i nadogradnji.
 - [**security_spec.md**](./security_spec.md) — Sigurnosna specifikacija za Firestore Zero-Trust pravila.
+- [**Live aplikacija**](https://dronelogbook.zrina.app/) — Isprobaj aplikaciju.
 
 ---
 
