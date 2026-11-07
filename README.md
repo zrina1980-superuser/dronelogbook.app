@@ -88,3 +88,7 @@ npm run build
 
 - **E-pošta**: [drone@zrina.app](mailto:drone@zrina.app)
 - **Službeni web**: [https://zrina.app](https://zrina.app)
+
+## Neobavezna podrška
+
+Ako ti je ovaj projekt bio koristan, možeš po želji podržati njegov daljnji razvoj na [Ko-fi](https://ko-fi.com/zrina).
